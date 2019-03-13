@@ -1,2 +1,46 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-default{
+background-color: coral;
+}
+
+.jumbotron{
+  background-image: asset-url('recipe_cover.png');
+  background-size: cover;
+ 
+}
+
+.center{
+  text-align:center;
+}
+#logo{
+  float: left;
+  font-size: 1.7em;
+  color:white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight:bold;
+}
+
+#logo:hover {
+  color:red;
+  text-decoration: none;
+}
+
+.jumbotron h1,h2{
+  color:white;
+  margin-bottom:30px;
+  text-align:center;
+  letter-spacing:-1px;
+  font-weight:bold;
+}
+
+.btn-xlarge{
+  background-color: coral;
+}
+
+.btn-xlarge:hover{
+  color:white;
+  text-decoration:none;
+}
