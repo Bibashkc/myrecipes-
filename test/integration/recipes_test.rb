@@ -13,7 +13,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
   
   
-  test "shoudl get recipes index" do 
+  test "should get recipes index" do 
     get recipes_url 
     assert_response :success
   end
@@ -21,8 +21,31 @@ class RecipesTest < ActionDispatch::IntegrationTest
   test "should get recipes listing" do 
     get recipes_url
     assert_template 'recipes/index'
+    # assert_select "a[herf=?]", recipe_url(@recipe), text: @recipe.name
+    # assert_select "a[herf=?]", recipe_url(@recipe2), text: @recipe2.name
+  end
+  
+  test "should get recipes show" do 
+    get recipe_url(@recipe)
+    assert_template 'recipes/show'
     assert_match @recipe.name, response.body
-    assert_match @recipe2.name, response.body
+    assert_match @recipe.description, response.body
+    assert_match @recipe.chef.chefname, response.body
+  end
+  
+  test "create new valid recipe" do 
+    get new_recipe_url
+    assert_response :success
+  end
+  
+  test "reject invalid recipe submissions" do 
+    get new_recipe_url
+    assert_template 'recipes/new'
+    assert_no_difference 'Recipe.count' do 
+      post recipes_url, params: {recipe: {name:" ", description: " "}}
+    end
+    assert_template 'recipes/new'
+    assert_select 'body'
   end
   
 end

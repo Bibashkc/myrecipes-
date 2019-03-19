@@ -1,15 +1,14 @@
-<h1 align="center">Recipes</h1>
-<hr>
+<%=render 'shared/page_title', title: "Recipes"%>
 <%@recipes.each do |recipe|%>
 <div class="row">
   <div class="col-md-2">
-    <section class="center">
-      
+    <section class="chef_info center">
+      <%=gravatar_for(recipe.chef, size: 120)%>
     </section>
   </div>
-  <div class="col-mid-8 well">
-    <h4><%=recipe.name%></h4>
-    <p><%=truncate(recipe.description, length: 150)%></p>
+  <div class="col-md-8 well">
+    <h4><%= link_to recipe.name.split.map(&:capitalize).join(" "), recipe_url(recipe)%></h4>
+    <p><%=simple_format(truncate(recipe.description, length: 50))%></p>
     <p> 
       <span class = "quiet"><small>Created <%=time_ago_in_words(recipe.created_at)%> ago</small></span>
     </p>
