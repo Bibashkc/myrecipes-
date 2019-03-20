@@ -1,0 +1,12 @@
+<div class="row">
+  <div class ="col-md-10 col-md-offset-1">
+    <%if flash[:success]%>
+      <%flash[:success].each do |error|%>
+        <div class="alert alert-success" role ="alert">
+          <%=error%>
+          <button type="button" class = "close" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div> 
+      <%end%>
+    <%end%>
+  </div>
+</div>
