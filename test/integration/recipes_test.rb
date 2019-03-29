@@ -21,8 +21,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
   test "should get recipes listing" do 
     get recipes_url
     assert_template 'recipes/index'
-    # assert_select "a[herf=?]", recipe_url(@recipe), text: @recipe.name
-    # assert_select "a[herf=?]", recipe_url(@recipe2), text: @recipe2.name
+    assert_select "a[href=?]", recipe_url(@recipe), text: @recipe.name.split(" ").map(&:capitalize).join(" ")
+    assert_select "a[href=?]", recipe_url(@recipe2), text: @recipe2.name.split(" ").map(&:capitalize).join(" ")
   end
   
   test "should get recipes show" do 
