@@ -1,6 +1,11 @@
 
   <%= render 'layouts/errors'%>
-  <form action="<%=recipes_url%>" method ="POST">
+  <%if action == "new"%>
+    <form action="<%=recipes_url%>" method ="POST">
+      <%else%>
+    <form action="<%=recipe_url(@recipe)%>" method ="POST">
+      <input type="hidden" name="_method" value="PATCH">
+  <%end%>
     <div class = "row" >
    <input type="hidden" name ="authenticity_token" value = "<%=form_authenticity_token%>">
   <div class="form-group row">
@@ -19,7 +24,7 @@
   
   <div class ="form-group row">
     <div class ="col-md-offset-1 col-md-10">
-       <button type="submit" class="btn btn-primary btn-lg btn-xlarge">Create Recipe</button>
+       <button type="submit" class="btn btn-primary btn-lg btn-xlarge"><%= @recipe.new_record? ? "Create Recipe" : "Update Recipe"%></button>
       </div>
       </div>
       </div>

@@ -20,6 +20,22 @@ class ChefsController < ApplicationController
     render :show
   end
   
+  def edit
+    @chef = Chef.find(params[:id])
+    render :edit
+  end
+  
+  def update
+    @chef = Chef.find(params[:id])
+    if @chef.update(chef_params)
+      flash[:success] = ["Your account has been succesfully updated!"]
+      redirect_to @chef
+    else
+      flash.now[:errors] = @chef.errors.full_messages
+      render :edit
+    end
+  end
+  
   private
   def chef_params
     params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)
