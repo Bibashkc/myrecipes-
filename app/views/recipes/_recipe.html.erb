@@ -2,7 +2,8 @@
 <div class="row">
   <div class="col-md-2">
     <section class="chef_info center">
-      <%=gravatar_for(recipe.chef, size: 120)%>
+      
+     <a href="<%=chef_url(recipe.chef)%>"><%=gravatar_for(recipe.chef, size: 120)%></a>
     </section>
   </div>
   <div class="col-md-8 well">
@@ -11,6 +12,15 @@
     <p> 
       <span class = "quiet"><small>Created <%=time_ago_in_words(recipe.created_at)%> ago</small></span>
     </p>
+            
+    <% if logged_in? && current_chef.id == recipe.chef.id%>
+      <div class = "recipe-actions">
+        <%=link_to "Edit this recipe", edit_recipe_url(recipe), class: "btn btn-xs btn-warning"%>
+        <%=link_to "Delete this recipe", recipe_url(recipe), method: :delete,
+        data: {confirm: "Are you sure want to delete this recipe?"},
+        class: "btn btn-xs btn-danger"%>
+      </div>
+    <%end%>
   </div>
   
 </div>
