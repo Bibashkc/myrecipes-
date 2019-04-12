@@ -7,18 +7,30 @@
 
 <div class="row">
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary btn-xlarge" href="#" role="button">View details »</a></p>
+        <h2><%=@recipes.first.name.split(" ").map(&:capitalize).join(" ")%></h2>
+        <p><%=@recipes.first.description%></p>
+        <%if logged_in?%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=recipe_url(@recipes.second)%>" role="button">View details »</a></p>
+        <%else%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=login_url%>" role="button">View details »</a></p>
+        <%end%>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary btn-xlarge" href="#" role="button">View details »</a></p>
+        <h2><%=@recipes.second.name.split(" ").map(&:capitalize).join(" ")%></h2>
+        <p><%=@recipes.second.description%></p>
+        <%if logged_in?%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=recipe_url(@recipes.second)%>" role="button">View details »</a></p>
+        <%else%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=login_url%>" role="button">View details »</a></p>
+        <%end%>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary btn-xlarge" href="#" role="button">View details »</a></p>
+        <h2><%=@recipes.last.name.split(" ").map(&:capitalize).join(" ")%></h2>
+        <p><%=@recipes.last.description%></p>
+        <%if logged_in?%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=recipe_url(@recipes.second)%>" role="button">View details »</a></p>
+        <%else%>
+        <p><a class="btn btn-secondary btn-xlarge" href="<%=login_url%>" role="button">View details »</a></p>
+        <%end%>
       </div>
   </div>

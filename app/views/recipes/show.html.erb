@@ -18,7 +18,7 @@
     </div>
       <div class="recipe-actions">
         
-        <% if logged_in? && current_chef.id == @recipe.chef.id%>
+        <% if logged_in? && (current_chef.id == @recipe.chef.id || current_chef.admin?)%>
         <%=link_to "Edit this recipe", edit_recipe_url(@recipe), class: "btn btn-xs btn-warning"%>
         <%=link_to "Delete this recipe", recipe_url(@recipe), method: :delete,
         data: {confirm: "Are you sure want to delete this recipe?"},

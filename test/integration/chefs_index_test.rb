@@ -8,6 +8,8 @@ class ChefsIndexTest < ActionDispatch::IntegrationTest
   def setup
     @chef = Chef.create!(chefname: "bibash", email: "bibash@example.com", 
     password: "password", password_confirmation: "password")
+    @admin_user = Chef.create!(chefname: "bibash1", email: "bibash1@example.com", 
+    password: "password", password_confirmation: "password", admin: true)
   end
   
   test "should get chefs index page" do 
@@ -22,7 +24,8 @@ class ChefsIndexTest < ActionDispatch::IntegrationTest
   end
   
   test "should delete chef" do 
-    get chefs_path
+    sign_in_as(@admin_user,"password")
+    get chefs_url
     assert_template 'chefs/index'
     assert_difference 'Chef.count', -1 do 
       delete chef_path(@chef)
