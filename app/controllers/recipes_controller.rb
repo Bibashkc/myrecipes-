@@ -22,6 +22,9 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.chef = current_chef
+    params[:recipe][:ingredient_ids].each do |id|
+      RecipeIngredient.create!(recipe_id: @recipe.id, ingredient_id: id.to_i)
+    end
      if @recipe.save
        flash[:success] = ["Recipe was created successfully"]
        redirect_to recipe_url(@recipe)
@@ -61,7 +64,7 @@ class RecipesController < ApplicationController
   end
   
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    params.require(:recipe).permit(:name, :description, ingredient_ids: [])
   end
   
   def require_same_user

@@ -31,6 +31,19 @@
           </ul>
         </li>
         <%end%>
+           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingredients<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href= "<%=ingredients_url%>">All Ingredients</a></li>
+              <% Ingredient.all.each do |ingredient|%>
+                <li><%=link_to ingredient.name.capitalize, ingredient_url(ingredient)%></li>
+              <%end%>
+              <%if logged_in? && current_chef.admin?%>
+                <li role="separator" class="divider"></li>
+                <li><a href="<%=new_ingredient_url%>">New Ingredient</a></li>
+              <%end%>
+          </ul>
+        </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">

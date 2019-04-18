@@ -1,0 +1,28 @@
+
+  <%= render 'layouts/errors'%>
+  <%if action == "new"%>
+    <form action="<%=ingredients_url%>" method ="POST">
+      <%else%>
+    <form action="<%=ingredient_url(@ingredient)%>" method ="POST">
+      <input type="hidden" name="_method" value="PATCH">
+  <%end%>
+    <div class = "row" >
+   <input type="hidden" name ="authenticity_token" value = "<%=form_authenticity_token%>">
+  <div class="form-group row">
+    <label class="col-md-1 col-form-label" style = "padding-top:5px;">Name</label>
+    <div class="col-md-8">
+      <input type="text" name= "ingredient[name]" class="form-control" placeholder="Name of your ingredient" value ="<%=@ingredient.name%>" autofocus>
+    </div>
+  </div>
+  
+  <div class ="form-group row">
+    <div class ="col-md-offset-1 col-md-10">
+       <button type="submit" class="btn btn-primary btn-lg btn-xlarge"><%= @ingredient.new_record? ? "Create Ingredient" : "Update Ingredient"%></button>
+      </div>
+      </div>
+      </div>
+  </form>
+  
+  <div class="col-md-4 col-md-offset-4 colormatch">
+    [<%=link_to "Cancel request and return to recipes", recipes_url%>]
+  </div>
