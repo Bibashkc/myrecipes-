@@ -1,3 +1,4 @@
+  <%=render 'layouts/errors'%>
   <%=render 'shared/page_title', title: @recipe.name%>
   <div class="col-md-8 col-md-offset-2 well">
     <h4 class="center description"><strong>Steps: </strong></h4>
@@ -32,3 +33,39 @@
       </div>
   </div>
 
+<%if logged_in?%>
+<form action = "<%=recipe_comments_url(@recipe) %>" method ="POST">
+ <div class = "row" >
+    <input type="hidden" name ="authenticity_token" value = "<%=form_authenticity_token%>">
+  <div class="form-group row">
+    <div class="col-md-8 col-md-offset-2">
+      <label class="col-md-1 col-form-label"><strong>Comments</strong></label>
+      <textarea class="form-control" name="comment[description]" placeholder="Enter your comment here" rows="6"><%=@comment.description%></textarea>
+    </div>
+  </div>
+  
+  <div class ="form-group row">
+    <div class ="col-md-offset-2 col-md-10">
+       <button type="submit" class="btn btn-primary btn-lg btn-xlarge">Submit Comment</button>
+      </div>
+    </div>
+  </div>
+  </form>
+  <%end%>
+
+  <%if @recipe.comments != 0 %>
+    <div class = "row">
+      <div class ="col-md-8 col-md-offset-2">
+        <h3>Prior Comments:</h3>
+        <div id = "messages">
+          <%= render partial: 'comments/comments', object: @comments%>
+        </div>
+      </div>
+    </div>
+  <%else%>
+    <div class="row">
+      <div class = "col-md-8 col-md-offset-2">
+        <h3>No comments yet!</h3>
+      </div>
+    </div>
+  <%end%>
