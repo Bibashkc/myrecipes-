@@ -24,11 +24,11 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.chef = current_chef
-    params[:recipe][:ingredient_ids].each do |id|
-      RecipeIngredient.create!(recipe_id: @recipe.id, ingredient_id: id.to_i)
-    end
      if @recipe.save
        flash[:success] = ["Recipe was created successfully"]
+      params[:recipe][:ingredient_ids].each do |id|
+       RecipeIngredient.create!(recipe_id: @recipe.id, ingredient_id: id.to_i)
+      end
        redirect_to recipe_url(@recipe)
      else
        flash.now[:errors] = @recipe.errors.full_messages
