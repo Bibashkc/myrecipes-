@@ -1,7 +1,7 @@
   <%=render 'layouts/errors'%>
   <%=render 'shared/page_title', title: @recipe.name%>
   <div class="col-md-8 col-md-offset-2 well">
-    <h4 class="center description"><strong>Steps: </strong></h4>
+    <h4 class="center description"><h3 align="center">Steps: </h3></h4>
     <hr>
     <%= simple_format(@recipe.description)%>
     <hr>
@@ -36,10 +36,16 @@
 <%if logged_in?%>
 <form action = "<%=recipe_comments_url(@recipe) %>" method ="POST">
  <div class = "row" >
+   <div class ="form-group row">
+    <div class ="col-md-offset-4 col-md-4">
+      <h4 align = "center">Comments</h4>
+      </div>
+    </div>
+  </div>
+     
     <input type="hidden" name ="authenticity_token" value = "<%=form_authenticity_token%>">
   <div class="form-group row">
     <div class="col-md-8 col-md-offset-2">
-      <label class="col-md-1 col-form-label"><strong>Comments</strong></label>
       <textarea class="form-control" name="comment[description]" placeholder="Enter your comment here" rows="6"><%=@comment.description%></textarea>
     </div>
   </div>
@@ -56,7 +62,7 @@
   <%if @recipe.comments != 0 %>
     <div class = "row">
       <div class ="col-md-8 col-md-offset-2">
-        <h3>Prior Comments:</h3>
+        <hr>
         <div id = "messages">
           <%= render partial: 'comments/comments', object: @comments%>
         </div>
