@@ -7,8 +7,9 @@ class CommentsController < ApplicationController
     @comment.recipe_id = @recipe.id
     @comment.chef_id = current_chef.id
     if @comment.save
-      flash[:success] = ["Comment was created successfully"]
-      redirect_to recipe_url(@recipe)
+      ActionCable.server.broadcast "comments", render(partial: 'comments/comment', object: @comment)
+      # flash[:success] = ["Comment was created successfully"]
+      # redirect_to recipe_url(@recipe)
     else
       flash[:errors] = @comment.errors.full_messages
       redirect_to :back

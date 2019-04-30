@@ -34,7 +34,7 @@
   </div>
 
 <%if logged_in?%>
-<form action = "<%=recipe_comments_url(@recipe) %>" method ="POST">
+<form action = "<%=recipe_comments_url(@recipe) %>" method ="POST" data-remote="true">
  <div class = "row" >
    <div class ="form-group row">
     <div class ="col-md-offset-4 col-md-4">
@@ -59,11 +59,11 @@
   </form>
   <%end%>
 
-  <%if @recipe.comments != 0 %>
     <div class = "row">
       <div class ="col-md-8 col-md-offset-2">
         <hr>
         <div id = "messages">
+           <%if @recipe.comments.count != 0 %>
           <%= render partial: 'comments/comments', object: @comments%>
         </div>
       </div>
@@ -71,7 +71,7 @@
   <%else%>
     <div class="row">
       <div class = "col-md-8 col-md-offset-2">
-        <h3>No comments yet!</h3>
+        <h3 id = "no_comments">No comments yet!</h3>
       </div>
     </div>
   <%end%>
