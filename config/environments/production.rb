@@ -83,7 +83,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_cable.url = "wss://#{ENV['RAILS_HOST']}/cable"
+  # config.action_cable.url = "wss://#{ENV['RAILS_HOST']}/cable"
   config.web_socket_server_url = "wss://bibash-myrecipes.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = ['https://bibash-myrecipes.herokuapp.com', 'http://bibash-myrecipes.herokuapp.com']
 end
