@@ -56,7 +56,7 @@ end
 
 group :production do 
   gem 'pg'
-  gem 'redis'
+  gem 'redis', '~> 3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
