@@ -8,5 +8,5 @@ connected: ->
 disconnected: ->
 
 received: (data) ->
-  $("#messages").prepend(data) # messages is the id 
+  $("#messages .comment-fix:first").prepend(data) # messages is the id 
   $("#no_comments").hide()

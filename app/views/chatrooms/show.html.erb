@@ -1,0 +1,16 @@
+<%= render 'shared/page_title', title: "Chefchat"%>
+
+<div class = "row chat-container">
+  <div class = "col-md-8 center-block">
+    <div class ="messages" id = "messages">
+      <%= render @messages %>
+    </div>
+    <hr>
+  <div class = "message-container">
+    <form action = "<%=messages_url%>" method = "POST" data-remote="true">
+      <textarea name ="message[content]" class = "form-control",data: { behavior: "room_speaker" }, placeholder = "Say something!"></textarea>
+        <button type="submit" class="btn btn-primary", data: { send: "message" }>Send</button>
+    </form>
+    </div>
+  </div>
+</div>
